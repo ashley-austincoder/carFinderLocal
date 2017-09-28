@@ -14,154 +14,187 @@
 <body>
 
   <div id='content' ng-app='CarFinder' ng-controller='MainController'>
-    <!--________________________ Start Survey Page_______________________ -->
-<div class="survey container-fluid">
-    <div class="container inner-survey" ng-show="!submittedSurvey">
-    <div class="row">
-      <h1 class="title col-lg-7">
-        Find your <br/>
-        perfect vehicle.
-      </h1>
-    </div>
-    <br /><br />
-
-    <div class="row">
-      <div class="col-sm-12">
-        <form>
-
-          <div class="form-group">
-            <label for="segment">Which of these sounds most true for you?</label>
-            <select class="form-control" id="segment">
-              <option>I want a small car, easy to drive around a city</option>
-              <option>I want a car that isn't huge but fits a lot of stuff, good for camping</option>
-              <option>I want a car I can trust my teenager to drive</option>
-              <option>I want a larger family car</option>
-              <option>I want something sporty</option>
-              <option>I want a truck</option>
-              <option>Gold</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="budget">What is your budget?</label>
-            <select class="form-control" id="budget">
-              <option>Select</option>
-              <option>< $10,000</option>
-              <option>$10,000-$25,000</option>
-              <option>$25,000-$35,000</option>
-              <option>$35,000-$50,000</option>
-              <option>$50,000+</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="gas">Tell us about your driving habits, which of these statements sounds true for you?</label>
-            <select class="form-control" id="gas">
-              <option value="none">Select</option>
-              <option value="1">I have a long commute, drive a ton!</option>
-              <option value="2">I drive daily but not too far.</option>
-              <option value="3">I just need a car for occasional errands.</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="passengers">Who are your most common passengers?</label>
-            <select class="form-control" id="passengers">
-              <option value="onlyme">Only me</option>
-              <option value="kids">Kids</option>
-              <option value="ya">Young Adults</option>
-              <option value="adults">Adults</option>
-              <option value="pets">Pets</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="color">Color Preferences?</label>
-            <select multiple class="form-control" id="color">
-              <option value="blue">Blue</option>
-              <option value="black">Black</option>
-              <option value="green">Green</option>
-              <option value="silver">Silver</option>
-              <option value="aqua">Aquamarine</option>
-              <option value="white">White</option>
-              <option value="gold">Gold</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn btn-default btn-large submit-btn" ng-click="submitSurvey()">Submit</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  </div>
-  <!--________________________ Start Results Page_______________________ -->
-  <div class="srp-header container-fluid" ng-show="submittedSurvey">
-    <h3>We have these vehicles we think you'll love</h3>
-    <p>Click Test Drive to set up an appointment to test drive!</p>
-  </div>
-
-  <div class="container" ng-show="submittedSurvey">
-    <div ng-repeat="vehicle in vehicles" class="vehicle-card">
+      <!--________________________ Start Survey Page_______________________ -->
+      <div class="survey container-fluid" ng-show="!submittedSurvey">
+      <div class="container inner-survey">
       <div class="row">
+        <h1 class="title col-lg-7">
+          Find your <br/>
+          perfect vehicle.
+        </h1>
+      </div>
+      <br /><br />
 
-        <div class="col-sm-4">
-          <h3 class="card-title">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h3>
-          <img src="https://alfadhi.ae/assets/img/car-placeholder.png" width="200px"/>
+      <div class="row">
+        <div class="col-sm-12">
+          <form>
+
+            <div class="form-group">
+              <label for="segment">Which of these sounds most true for you?</label>
+              <select class="form-control" id="segment">
+                <option>I want a small car, easy to drive around a city</option>
+                <option>I want a car that isn't huge but fits a lot of stuff, good for camping</option>
+                <option>I want a car I can trust my teenager to drive</option>
+                <option>I want a larger family car</option>
+                <option>I want something sporty</option>
+                <option>I want a truck</option>
+                <option>Gold</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="budget">What is your budget?</label>
+              <select class="form-control" id="budget">
+                <option>Select</option>
+                <option>< $10,000</option>
+                <option>$10,000-$25,000</option>
+                <option>$25,000-$35,000</option>
+                <option>$35,000-$50,000</option>
+                <option>$50,000+</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="gas">Tell us about your driving habits, which of these statements sounds true for you?</label>
+              <select class="form-control" id="gas">
+                <option value="none">Select</option>
+                <option value="1">I have a long commute, drive a ton!</option>
+                <option value="2">I drive daily but not too far.</option>
+                <option value="3">I just need a car for occasional errands.</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="passengers">Who are your most common passengers?</label>
+              <select class="form-control" id="passengers">
+                <option value="onlyme">Only me</option>
+                <option value="kids">Kids</option>
+                <option value="ya">Young Adults</option>
+                <option value="adults">Adults</option>
+                <option value="pets">Pets</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="color">Color Preferences?</label>
+              <select multiple class="form-control" id="color">
+                <option value="blue">Blue</option>
+                <option value="black">Black</option>
+                <option value="green">Green</option>
+                <option value="silver">Silver</option>
+                <option value="aqua">Aquamarine</option>
+                <option value="white">White</option>
+                <option value="gold">Gold</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-default btn-large submit-btn" ng-click="submitSurvey()">Submit</button>
+          </form>
         </div>
+      </div>
+    </div>
+    </div>
+    <!--________________________ Start Results Page_______________________ -->
+    <div class="srp-header container-fluid" ng-show="submittedSurvey">
+      <h3>We have these vehicles we think you'll love</h3>
+      <p>Click Test Drive to set up an appointment to test drive!</p>
+    </div>
 
-        <div class="col-sm-3">
-          <p>Price: {{vehicle.price}}</p>
-          <p>Odometer: {{vehicle.odometer}}</p>
-          <p>Odometer: {{vehicle.odometer}}</p>
+    <div class="container srp" ng-show="submittedSurvey">
+      <div ng-repeat="vehicle in vehicles" class="vehicle-card">
+        <div class="row">
 
-          <h4>Features we think you'd like:</h4>
-          <p class="card-text">
-            <p ng-if="vehicle.gas"><i class="fa fa-car" aria-hidden="true"></i>
-            Good gas mileage<p>
-            <p ng-if="vehicle.kids"><i class="fa fa-users" aria-hidden="true"></i>
-            Family Approved<p>
-            <p ng-if="vehicle.pets"><i class="fa fa-paw" aria-hidden="true"></i>
-            Pet Approved<p>
-            <!-- TODO: can find out avg listing and calc if higher or lower-->
-            <p><i class="fa fa-usd" aria-hidden="true"></i>
-            Low Price<p>
-          </p>
-        </div>
-
-        <div class="col-sm-5">
-          <p class="card-text">Reliability</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: {{vehicle.reliability}}%;" aria-valuenow="{{vehicle.reliability}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.reliability}}%</div>
+          <div class="col-sm-4">
+            <h3 class="card-title">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h3>
+            <img src="https://alfadhi.ae/assets/img/car-placeholder.png" width="200px"/>
           </div>
 
-          <p class="card-text">Safety Rating</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: {{vehicle.safety}}%;" aria-valuenow="{{vehicle.safety}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.safety}}%</div>
+          <div class="col-sm-3">
+            <p>Price: {{vehicle.price}}</p>
+            <p>Odometer: {{vehicle.odometer}}</p>
+            <p>Odometer: {{vehicle.odometer}}</p>
+
+            <h4>Features we think you'd like:</h4>
+            <p class="card-text">
+              <p ng-if="vehicle.gas"><i class="fa fa-car" aria-hidden="true"></i>
+              Good gas mileage<p>
+              <p ng-if="vehicle.kids"><i class="fa fa-users" aria-hidden="true"></i>
+              Family Approved<p>
+              <p ng-if="vehicle.pets"><i class="fa fa-paw" aria-hidden="true"></i>
+              Pet Approved<p>
+              <!-- TODO: can find out avg listing and calc if higher or lower-->
+              <p><i class="fa fa-usd" aria-hidden="true"></i>
+              Low Price<p>
+            </p>
           </div>
 
-          <p class="card-text">Ride and Handling Rating</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: {{vehicle.handling}}%;" aria-valuenow="{{vehicle.reliability}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.handling}}%</div>
+          <div class="col-sm-5">
+            <p class="card-text">Reliability</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: {{vehicle.reliability}}%;" aria-valuenow="{{vehicle.reliability}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.reliability}}%</div>
+            </div>
+
+            <p class="card-text">Safety Rating</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: {{vehicle.safety}}%;" aria-valuenow="{{vehicle.safety}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.safety}}%</div>
+            </div>
+
+            <p class="card-text">Ride and Handling Rating</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: {{vehicle.handling}}%;" aria-valuenow="{{vehicle.reliability}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.handling}}%</div>
+            </div>
+
+            <a class="btn btn-primary" data-toggle="modal" data-id="vehicle.id" href="#appt-modal" ng-click="openModal">Test Drive</a>
           </div>
 
-
-
-          <a href="#" class="btn btn-primary">Test Drive</a>
         </div>
+
 
       </div>
-
-
     </div>
-  </div>
 
+    <!--_________________ Modal ___________________-->
+    <div class="modal" id="appt-modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Test drive our 2015 Honda Civic!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Book anytime Monday - Saturday 8am - 6pm</p>
+            <form>
+              <div class="form-group">
 
+                <div class="form-group">
+                  <label for="exampleInputEmail1">When would you like to come in?</label>
+                  <input type="date">
+                </div>
 
-  <!--________________________ Start Make Appt Page_______________________ -->
-  <div class="container" ng-show="makeAppointment">
-    <h3>testing make APPT</h3>
-  </div>
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
 
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--________________________ Start Make Appt Page? _______________________ -->
+    <div class="container" ng-show="makeAppointment">
+      <h3>testing make APPT</h3>
+    </div>
+
+  <!-- ends main controller div -->
   </div>
 
   <!--__________________________ Footer _____________________________ -->
