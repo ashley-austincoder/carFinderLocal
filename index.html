@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<head>
+  <title>Learning AngularJS</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/61a056c257.js"></script>
+  <script src="app.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="main.css">
+  <script src="maincontroller.js" type="text/javascript"></script>
+</head>
+<body>
+
+  <div id='content' ng-app='CarFinder' ng-controller='MainController'>
+    <!--________________________ Start Survey Page_______________________ -->
+<div class="survey container-fluid">
+    <div class="container inner-survey" ng-show="!submittedSurvey">
+    <div class="row">
+      <h1 class="title col-lg-7">
+        Find your <br/>
+        perfect vehicle.
+      </h1>
+    </div>
+    <br /><br />
+
+    <div class="row">
+      <div class="col-sm-12">
+        <form>
+
+          <div class="form-group">
+            <label for="segment">Which of these sounds most true for you?</label>
+            <select class="form-control" id="segment">
+              <option>I want a small car, easy to drive around a city</option>
+              <option>I want a car that isn't huge but fits a lot of stuff, good for camping</option>
+              <option>I want a car I can trust my teenager to drive</option>
+              <option>I want a larger family car</option>
+              <option>I want something sporty</option>
+              <option>I want a truck</option>
+              <option>Gold</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">What is your budget?</label>
+            <select class="form-control" id="budget">
+              <option>Select</option>
+              <option>< $10,000</option>
+              <option>$10,000-$25,000</option>
+              <option>$25,000-$35,000</option>
+              <option>$35,000-$50,000</option>
+              <option>$50,000+</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="gas">Tell us about your driving habits, which of these statements sounds true for you?</label>
+            <select class="form-control" id="gas">
+              <option value="none">Select</option>
+              <option value="1">I have a long commute, drive a ton!</option>
+              <option value="2">I drive daily but not too far.</option>
+              <option value="3">I just need a car for occasional errands.</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="passengers">Who are your most common passengers?</label>
+            <select class="form-control" id="passengers">
+              <option value="onlyme">Only me</option>
+              <option value="kids">Kids</option>
+              <option value="ya">Young Adults</option>
+              <option value="adults">Adults</option>
+              <option value="pets">Pets</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="color">Color Preferences?</label>
+            <select multiple class="form-control" id="color">
+              <option value="blue">Blue</option>
+              <option value="black">Black</option>
+              <option value="green">Green</option>
+              <option value="silver">Silver</option>
+              <option value="aqua">Aquamarine</option>
+              <option value="white">White</option>
+              <option value="gold">Gold</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-default btn-large submit-btn" ng-click="submitSurvey()">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--________________________ Start Results Page_______________________ -->
+  <div class="srp-header container-fluid" ng-show="submittedSurvey">
+    <h3>We have these vehicles we think you'll love</h3>
+    <p>Click Test Drive to set up an appointment to test drive!</p>
+  </div>
+
+  <div class="container" ng-show="submittedSurvey">
+    <div ng-repeat="vehicle in vehicles" class="vehicle-card">
+      <div class="row">
+
+        <div class="col-sm-4">
+          <h3 class="card-title">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h3>
+          <img src="https://alfadhi.ae/assets/img/car-placeholder.png" width="200px"/>
+        </div>
+
+        <div class="col-sm-3">
+          <p>Price: {{vehicle.price}}</p>
+          <p>Odometer: {{vehicle.odometer}}</p>
+          <p>Odometer: {{vehicle.odometer}}</p>
+
+          <h4>Features we think you'd like:</h4>
+          <p class="card-text">
+            <p ng-if="vehicle.gas"><i class="fa fa-car" aria-hidden="true"></i>
+            Good gas mileage<p>
+            <p ng-if="vehicle.kids"><i class="fa fa-users" aria-hidden="true"></i>
+            Family Approved<p>
+            <p ng-if="vehicle.pets"><i class="fa fa-paw" aria-hidden="true"></i>
+            Pet Approved<p>
+            <!-- TODO: can find out avg listing and calc if higher or lower-->
+            <p><i class="fa fa-usd" aria-hidden="true"></i>
+            Low Price<p>
+          </p>
+        </div>
+
+        <div class="col-sm-5">
+          <p class="card-text">Reliability</p>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{vehicle.reliability}}%;" aria-valuenow="{{vehicle.reliability}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.reliability}}%</div>
+          </div>
+
+          <p class="card-text">Safety Rating</p>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{vehicle.safety}}%;" aria-valuenow="{{vehicle.safety}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.safety}}%</div>
+          </div>
+
+          <p class="card-text">Ride and Handling Rating</p>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{vehicle.handling}}%;" aria-valuenow="{{vehicle.reliability}}" aria-valuemin="0" aria-valuemax="100">{{vehicle.handling}}%</div>
+          </div>
+
+
+
+          <a href="#" class="btn btn-primary">Test Drive</a>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+  <!--________________________ Start Make Appt Page_______________________ -->
+  <div class="container" ng-show="makeAppointment">
+    <h3>testing make APPT</h3>
+  </div>
+
+  </div>
+
+  <!--__________________________ Footer _____________________________ -->
+  <footer class="bg-dark container-fluid">
+      <p class="text-center footer-text">COX AUTOMOTIVE HACKATHON 2017</p>
+  </footer>
+
+  </div>
+</body>
+</html>
